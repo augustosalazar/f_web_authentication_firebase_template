@@ -11,6 +11,7 @@ import '../domain/use_case/user_usecase.dart';
 import 'central.dart';
 import 'controller/authentication_controller.dart';
 import 'controller/user_controller.dart';
+import '../data/datasources/remote/authentication/authentication_source.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //TODO change the source to AuthenticationFireSource
-    Get.put<IAuthenticationSource>(AuthenticationFireSource());
+    Get.put<IAuthenticationSource>(AuthenticationSource());
     //TODO change the source to RemoteFirebaseUserSource
     Get.put<IRemoteUserSource>(RemoteUserSource());
     Get.put<IRepository>(Repository(Get.find(), Get.find()));

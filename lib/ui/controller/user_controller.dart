@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:loggy/loggy.dart';
-
 import '../../domain/models/user.dart';
 import '../../domain/use_case/user_usecase.dart';
+import 'authentication_controller.dart';
 
 class UserController extends GetxController {
   final RxList<User> _users = <User>[].obs;
@@ -18,6 +18,10 @@ class UserController extends GetxController {
 
   getUers() async {
     logInfo("Getting users");
+    AuthenticationController authController = Get.find();
+    if (authController.isLogged == false) {
+      return;
+    }
     _users.value = await userUseCase.getUsers();
   }
 

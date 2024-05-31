@@ -1,11 +1,17 @@
 import 'package:get/get.dart';
 import 'package:loggy/loggy.dart';
 import '../../domain/use_case/authentication_usecase.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthenticationController extends GetxController {
   final logged = false.obs;
 
   bool get isLogged => logged.value;
+
+  AuthenticationController() {
+    logInfo('Controller Init');
+    logged.value = FirebaseAuth.instance.currentUser != null;
+  }
 
   Future<bool> login(email, password) async {
     logInfo('Controller Login');
